@@ -1,1 +1,88 @@
 Please replace this text with ~50 lines of terminal history.
+## Read/Query
+db.bounties.find()
+db.bounties.find({ client: 'Time Bureau'})
+db.bounties.find({ captured: true})
+db.bounties.find({ name: 'Yoda'})
+db.bounties.find({}, {name: 1})
+## Remove
+db.bounties.deleteOne({
+    name: 'Starbuck'
+})
+
+db.bounties.deleteOne({
+    name: 'Han Solo'
+})
+## Update
+db.bounties.updateOne(
+    { name: 'Sara Lance'},
+    { $set: {name: 'White Canary'}}
+)
+
+db.bounties.updateOne(
+    { ship: 'The Milano'},
+    { $set: {ship: 'The Milano 2'}}
+)
+## Intermediate Mongo
+db.bounties.find({
+    reward: { $gt: 100000 }
+})
+
+db.bounties.find({
+    reward: { $lt: 1000}
+})
+
+db.bounties.find({
+    reward: { $lte: 1000}
+})
+
+db.bounties.find({
+    hunters: 'Nebula'
+})
+
+db.bounties.find({ 
+    $or: [ { ship: 'Waverider' }, 
+    {ship: 'Serenity'}]
+})
+
+db.bounties.find({
+    $and: [{ captured: false},
+    { client: 'Ayesha High Priestess of the Sovereign'}]
+})   
+
+db.bounties.updateMany(
+    {},
+    {$inc:{reward:333333}}
+)
+
+db.bounties.updateMany(
+    {},
+    {$mul:{reward:2}}
+)
+
+db.bounties.updateOne(
+    {name: 'Malcolm Reynolds'},
+    {$set: {hunters: 'Bobba Fett'}})
+
+db.bounties.updateOne(
+    {name: 'White Canary'},
+    {$set: {hunters: 'Bobba Fett'}}
+)
+
+db.bounties.updateOne(
+    {hunters: "Dengar"},
+    {$pop:{hunters:1}
+})
+
+
+db.bounties.updateOne(
+    {name: 'Han Solo'},
+    {$set: {lastSeen: 'yesterday'}}
+)
+
+db.bounties.updateMany(
+    {name: {$ne: 'Han Solo'}}, 
+    {$set: {lastSeen: 'last week'}}, 
+    {upsert: true})
+
+
